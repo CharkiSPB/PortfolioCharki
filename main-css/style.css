@@ -2,6 +2,7 @@
     font-family: 'Good Vibes Pro';
     src: url('fonts/GoodVibesPro/GoodVibesPro.woff2') format('woff2'),
          url('fonts/GoodVibesPro/GoodVibesPro.woff') format('woff');
+    crossorigin: anonymous;
     font-weight: normal;
     font-style: normal;
     font-display: swap;
