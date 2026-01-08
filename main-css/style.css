@@ -1,7 +1,16 @@
-@font-face {
+/* @font-face {
     font-family: 'Good Vibes Pro';
     src: url('/fonts/GoodVibesPro/GoodVibesPro.woff2') format('woff2'),
          url('/fonts/GoodVibesPro/GoodVibesPro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+} */
+
+@font-face {
+    font-family: 'Bolero Script';
+    src: url('/fonts/BoleroScript/Boleroscript.woff2') format('woff2'),
+         url('/fonts/BoleroScript/Boleroscript.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -102,7 +111,7 @@ button:focus-visible,
 }
 
 .site-preloader__text {
-    font-family: 'Good Vibes Pro', cursive;
+    font-family: 'Bolero Script', cursive;
     font-size: clamp(36px, 6vw, 84px);
     color: var(--black);
     text-align: center;
@@ -159,7 +168,7 @@ button:focus-visible,
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    font-family: 'Good Vibes Pro', cursive;
+    font-family: 'Bolero Script', cursive;
     font-size: 1.875rem;
     color: var(--black);
     white-space: nowrap;
@@ -493,7 +502,7 @@ a {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    font-family: 'Good Vibes Pro', cursive; /* Change font on hover */
+    font-family: 'Bolero Script', cursive; /* Change font on hover */
     font-size: 1.875rem; /* Slightly larger for script */
     color: var(--white); /* Optional: nice effect */
     white-space: nowrap;
@@ -599,7 +608,7 @@ a {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    font-family: 'Good Vibes Pro', cursive; /* Change font on hover */
+    font-family: 'Bolero Script', cursive; /* Change font on hover */
     font-size: 1.875rem; /* Slightly larger for script */
     color: var(--white); /* Optional: nice effect */
     white-space: nowrap;
@@ -926,7 +935,7 @@ a {
 
 .work-link:hover .link-text-hover {
     opacity: 1;
-    font-family: 'Good Vibes Pro', cursive;
+    font-family: 'Bolero Script', cursive;
 }
 
 
@@ -1090,7 +1099,7 @@ a {
     display: inline-block;
     opacity: 0;
     transition: opacity 0.3s ease;
-    font-family: 'Good Vibes Pro', cursive;
+    font-family: 'Bolero Script', cursive;
     font-size: 1.875rem;
 }
 
@@ -1146,7 +1155,7 @@ a {
 }
 
 .script-title {
-    font-family: 'Good Vibes Pro';
+    font-family: 'Bolero Script', cursive;
     font-size: 5rem;
     font-weight: 400;
     margin-bottom: 20px;
@@ -1693,7 +1702,7 @@ a {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    font-family: 'Good Vibes Pro', cursive;
+    font-family: 'Bolero Script', cursive;
     font-size: 1.875rem;
     color: var(--white);
     white-space: nowrap;

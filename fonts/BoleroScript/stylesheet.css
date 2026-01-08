@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Bolero script';
+    src: url('Boleroscript.eot');
+    src: local('Bolero script'), local('Boleroscript'),
+        url('Boleroscript.eot?#iefix') format('embedded-opentype'),
+        url('Boleroscript.woff2') format('woff2'),
+        url('Boleroscript.woff') format('woff'),
+        url('Boleroscript.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
