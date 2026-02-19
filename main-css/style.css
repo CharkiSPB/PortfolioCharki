@@ -2018,6 +2018,15 @@ body {
     margin-top: auto;
 }
 
+.contact-modal__logo {
+    width: 100%;
+    max-width: 375px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    object-fit: contain;
+}
+
 .contact-modal__contact-link {
     display: flex;
     align-items: center;
