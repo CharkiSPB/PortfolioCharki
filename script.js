@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollReveals();
     initMagneticLinks();
+    initContactModal();
 });
 
 function initSitePreloader() {
@@ -716,4 +717,183 @@ function initContactSection() {
     // Ensure the contact section is visible and not transformed
     contactSection.style.transform = 'translateY(0)';
     contactSection.style.opacity = '1';
+}
+
+// Contact Modal functionality
+function initContactModal() {
+    const modal = document.getElementById('contactModal');
+    const modalClose = modal?.querySelector('.contact-modal__close');
+    const contactLinks = document.querySelectorAll('a[href="#contact"], .nav-link[href="#contact"], .mobile-nav-link[href="#contact"]');
+    const form = document.getElementById('contactForm');
+
+    if (!modal || !modalClose) return;
+
+    // Open modal
+    const openModal = () => {
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+    };
+
+    // Close modal
+    const closeModal = () => {
+        modal.classList.remove('is-visible');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    };
+
+    // Open modal on contact link click
+    contactLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+    });
+
+    // Close modal on close button click
+    modalClose.addEventListener('click', closeModal);
+
+    // Close modal on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
+
+    // Form validation and submission
+    if (form) {
+        const nameInput = document.getElementById('contactName');
+        const contactInput = document.getElementById('contactContact');
+        const messageInput = document.getElementById('contactMessage');
+        const formStatus = document.getElementById('formStatus');
+
+        const validateEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        };
+
+        const validateTelegram = (telegram) => {
+            const re = /^@?[a-zA-Z0-9_]{3,32}$/;
+            return re.test(telegram);
+        };
+
+        const validateContact = (value) => {
+            return validateEmail(value) || validateTelegram(value);
+        };
+
+        const showError = (input, errorId, message) => {
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                input.classList.add('is-invalid');
+                errorEl.textContent = message;
+                errorEl.classList.add('is-visible');
+            }
+        };
+
+        const clearError = (input, errorId) => {
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                input.classList.remove('is-invalid');
+                errorEl.textContent = '';
+                errorEl.classList.remove('is-visible');
+            }
+        };
+
+        // Real-time validation
+        nameInput?.addEventListener('blur', () => {
+            if (nameInput.value.trim().length < 2) {
+                showError(nameInput, 'nameError', 'Имя должно содержать минимум 2 символа');
+            } else {
+                clearError(nameInput, 'nameError');
+            }
+        });
+
+        contactInput?.addEventListener('blur', () => {
+            if (!validateContact(contactInput.value.trim())) {
+                showError(contactInput, 'contactError', 'Введите корректный email или Telegram (@username)');
+            } else {
+                clearError(contactInput, 'contactError');
+            }
+        });
+
+        messageInput?.addEventListener('blur', () => {
+            if (messageInput.value.trim().length < 10) {
+                showError(messageInput, 'messageError', 'Сообщение должно содержать минимум 10 символов');
+            } else {
+                clearError(messageInput, 'messageError');
+            }
+        });
+
+        // Clear errors on input
+        nameInput?.addEventListener('input', () => clearError(nameInput, 'nameError'));
+        contactInput?.addEventListener('input', () => clearError(contactInput, 'contactError'));
+        messageInput?.addEventListener('input', () => clearError(messageInput, 'messageError'));
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate all fields
+            let isValid = true;
+
+            if (nameInput.value.trim().length < 2) {
+                showError(nameInput, 'nameError', 'Имя должно содержать минимум 2 символа');
+                isValid = false;
+            }
+
+            if (!validateContact(contactInput.value.trim())) {
+                showError(contactInput, 'contactError', 'Введите корректный email или Telegram (@username)');
+                isValid = false;
+            }
+
+            if (messageInput.value.trim().length < 10) {
+                showError(messageInput, 'messageError', 'Сообщение должно содержать минимум 10 символов');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Submit form
+            const submitBtn = form.querySelector('.contact-modal__submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = 'Сообщение успешно отправлено!';
+                    formStatus.className = 'contact-modal__status is-success';
+                    form.reset();
+                    setTimeout(() => {
+                        closeModal();
+                        formStatus.textContent = '';
+                        formStatus.className = 'contact-modal__status';
+                    }, 2000);
+                } else {
+                    formStatus.textContent = 'Ошибка при отправке. Попробуйте позже.';
+                    formStatus.className = 'contact-modal__status is-error';
+                }
+            } catch (error) {
+                formStatus.textContent = 'Ошибка при отправке. Попробуйте позже.';
+                formStatus.className = 'contact-modal__status is-error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить';
+            }
+        });
+    }
 }

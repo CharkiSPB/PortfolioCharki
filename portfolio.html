@@ -336,17 +336,71 @@
         </div>
         <div class="contact-info">
             <div class="contact-item">
-                <a href="https://t.me/your_username" class="contact-link" data-ru="Телеграм" target="_blank" rel="noreferrer">
+                <a href="https://t.me/CharkiChar" class="contact-link" data-ru="Телеграм" target="_blank" rel="noreferrer">
                     Telegram ↘
                 </a>
             </div>
             <div class="contact-item">
-                <a href="mailto:your_email@example.com" class="contact-link" data-ru="Электронная почта">
+                <a href="mailto:aioncharki@gmail.com" class="contact-link" data-ru="Электронная почта">
                     Email ↘
                 </a>
             </div>
         </div>
     </footer>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal-overlay" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="contact-modal">
+            <button class="contact-modal__close" aria-label="Закрыть модальное окно">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="contact-modal__split">
+                <div class="contact-modal__left">
+                    <h2 class="contact-modal__title contact-modal__title--left">Обсудить</h2>
+                    <form class="contact-modal__form" id="contactForm" action="https://formspree.io/f/aioncharki@gmail.com" method="POST">
+                        <div class="contact-modal__field">
+                            <label for="contactName" class="contact-modal__label">Имя</label>
+                            <input type="text" id="contactName" name="name" class="contact-modal__input" placeholder="Ваше имя" required minlength="2">
+                            <span class="contact-modal__error" id="nameError"></span>
+                        </div>
+                        <div class="contact-modal__field">
+                            <label for="contactContact" class="contact-modal__label">Контакт</label>
+                            <input type="text" id="contactContact" name="contact" class="contact-modal__input" placeholder="Email или Telegram" required>
+                            <span class="contact-modal__error" id="contactError"></span>
+                        </div>
+                        <div class="contact-modal__field">
+                            <label for="contactMessage" class="contact-modal__label">Сообщение</label>
+                            <textarea id="contactMessage" name="message" class="contact-modal__input contact-modal__textarea" placeholder="Расскажите о проекте" required minlength="10"></textarea>
+                            <span class="contact-modal__error" id="messageError"></span>
+                        </div>
+                        <button type="submit" class="contact-modal__submit">Отправить</button>
+                        <p class="contact-modal__status" id="formStatus"></p>
+                    </form>
+                </div>
+                <div class="contact-modal__right">
+                    <h2 class="contact-modal__title contact-modal__title--right">проект</h2>
+                    <div class="contact-modal__contacts">
+                        <a href="https://t.me/CharkiChar" class="contact-modal__contact-link" target="_blank" rel="noreferrer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                            </svg>
+                            Telegram ↘
+                        </a>
+                        <a href="mailto:aioncharki@gmail.com" class="contact-modal__contact-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            aioncharki@gmail.com ↘
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

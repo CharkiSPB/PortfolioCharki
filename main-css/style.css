@@ -1793,3 +1793,303 @@ body {
     padding-bottom: 0;
     flex-shrink: 0; /* Prevent footer from shrinking */
 }
+
+/* Contact Modal */
+.contact-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.contact-modal-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-modal-overlay[aria-hidden="true"] {
+    pointer-events: none;
+}
+
+.contact-modal {
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--white);
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.contact-modal-overlay.is-visible .contact-modal {
+    transform: scale(1);
+}
+
+.contact-modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.contact-modal__close:hover {
+    color: var(--pink);
+}
+
+.contact-modal__split {
+    display: flex;
+    min-height: 500px;
+}
+
+.contact-modal__left {
+    flex: 1;
+    background: var(--black);
+    padding: 60px 40px;
+    color: var(--white);
+}
+
+.contact-modal__right {
+    flex: 1;
+    background: var(--white);
+    padding: 60px 40px;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-modal__title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0 0 40px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.contact-modal__title--left {
+    color: var(--white);
+}
+
+.contact-modal__title--right {
+    color: var(--black);
+    text-align: center;
+}
+
+.contact-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-modal__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact-modal__input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.contact-modal__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-modal__input:focus {
+    outline: none;
+    border-color: var(--pink);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.contact-modal__input.is-invalid {
+    border-color: #ff4444;
+}
+
+.contact-modal__textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-modal__error {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #ff4444;
+    min-height: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-modal__error.is-visible {
+    opacity: 1;
+}
+
+.contact-modal__submit {
+    padding: 16px 32px;
+    background: var(--pink);
+    color: var(--black);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact-modal__submit:hover {
+    background: #2db32d;
+    transform: translateY(-2px);
+}
+
+.contact-modal__submit:active {
+    transform: translateY(0);
+}
+
+.contact-modal__submit:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.contact-modal__status {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 1.25rem;
+}
+
+.contact-modal__status.is-success {
+    color: var(--pink);
+}
+
+.contact-modal__status.is-error {
+    color: #ff4444;
+}
+
+.contact-modal__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: auto;
+}
+
+.contact-modal__contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-modal__contact-link:hover {
+    color: var(--pink);
+    transform: translateX(5px);
+}
+
+.contact-modal__contact-link svg {
+    flex-shrink: 0;
+}
+
+/* Modal blur effect on main content */
+body.modal-open {
+    overflow: hidden;
+}
+
+body.modal-open .site-preloader,
+body.modal-open main,
+body.modal-open header,
+body.modal-open footer {
+    filter: blur(8px);
+    transition: filter 0.4s ease;
+}
+
+/* Responsive for contact modal */
+@media (max-width: 768px) {
+    .contact-modal__split {
+        flex-direction: column;
+    }
+
+    .contact-modal__left,
+    .contact-modal__right {
+        padding: 40px 24px;
+    }
+
+    .contact-modal__title--right {
+        text-align: left;
+    }
+
+    .contact-modal {
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-modal {
+        width: 95%;
+    }
+
+    .contact-modal__left,
+    .contact-modal__right {
+        padding: 30px 20px;
+    }
+
+    .contact-modal__title {
+        font-size: 28px;
+    }
+
+    .contact-modal__close {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+    }
+}
