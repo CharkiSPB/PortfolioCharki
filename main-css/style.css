@@ -2025,6 +2025,35 @@ body {
     color: #ff4444;
 }
 
+.contact-modal__scroll-hint {
+    display: none;
+    text-align: center;
+    /* margin-top: 20px; */
+    animation: bounce 1.5s infinite;
+}
+
+.contact-modal__scroll-hint svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    stroke: #fff;
+    stroke-width: 2;
+    fill: none;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(8px);
+    }
+    60% {
+        transform: translateY(4px);
+    }
+}
+
 .contact-modal__contacts {
     display: flex;
     flex-direction: column;
@@ -2101,6 +2130,10 @@ body.modal-open footer {
     .contact-modal__title--left,
     .contact-modal__title--right {
         display: none;
+    }
+
+    .contact-modal__scroll-hint {
+        display: block !important;
     }
 }
 
