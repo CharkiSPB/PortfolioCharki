@@ -1827,7 +1827,7 @@ body {
     max-width: 900px;
     max-height: 90vh;
     overflow-y: auto;
-    background: var(--white);
+    background: var(--black);
     position: relative;
     transform: scale(0.9);
     transition: transform 0.4s ease;
@@ -1847,7 +1847,7 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--black);
+    color: var(--white);
     z-index: 10;
     display: flex;
     align-items: center;
@@ -1898,6 +1898,20 @@ body {
 .contact-modal__title--right {
     color: var(--black);
     text-align: center;
+}
+
+.contact-modal__title-mobile {
+    display: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0 0 30px;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--white);
+    background: var(--black);
+    padding: 20px;
 }
 
 .contact-modal__form {
@@ -2078,6 +2092,15 @@ body.modal-open footer {
     .contact-modal {
         max-height: 95vh;
         overflow-y: auto;
+    }
+
+    .contact-modal__title-mobile {
+        display: block;
+    }
+
+    .contact-modal__title--left,
+    .contact-modal__title--right {
+        display: none;
     }
 }
 
